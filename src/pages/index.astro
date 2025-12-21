@@ -1,118 +1,157 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
 import ProjectCard from '../components/projects/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+// Fetching logs for the automated research log section
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
 ---
 
 <!doctype html>
 <html lang="en">
-    <head>
-        <BaseHead title="Nevin Shine | Security Engineer" description="Independent Research & MLSecOps" />
-    </head>
-    <body class="bg-[#050505] text-gray-300 font-sans min-h-screen flex justify-center selection:bg-green-900 selection:text-white">
+	<head>
+		<BaseHead title="Nevin Shine | Security Engineer" description="Independent Research & MLSecOps" />
+	</head>
+	<body class="bg-[#050505] text-gray-300 font-sans min-h-screen flex flex-col items-center selection:bg-green-900 selection:text-white">
 
-        <div class="w-full max-w-4xl px-6 py-16">
+		<div class="w-full bg-neutral-900/30 border-y border-neutral-900 py-2 mb-12 flex justify-between px-4 font-mono text-[9px] tracking-[0.2em] text-neutral-500 overflow-hidden whitespace-nowrap">
+			<div class="flex gap-6 animate-pulse">
+				<span class="flex items-center gap-1">
+					<span class="text-green-500">●</span> UPTIME: 99.9%
+				</span>
+				<span class="hidden md:inline text-neutral-600">LOAD: 0.24 0.18 0.11</span>
+				<span class="text-red-900 font-bold">THREAT_LEVEL: LOW</span>
+			</div>
+			<div class="flex gap-6">
+				<span class="hidden sm:inline">KERNEL_VERSION: 6.5.0-STABLE</span>
+				<span id="live-clock" class="text-neutral-400">SYSTIME: --:--:--</span>
+			</div>
+		</div>
 
-            <div class="flex justify-between items-center text-[10px] font-mono text-neutral-600 mb-12 tracking-widest uppercase">
-                <span>Nürnberg (DE) // Kottayam (IN)</span>
-                <span class="flex items-center gap-2">
-                    <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
-                    System Online
-                </span>
-            </div>
+		<div class="w-full max-w-4xl px-6 pb-20">
+			
+			<div class="text-[10px] font-mono text-neutral-600 mb-12 tracking-widest uppercase">
+				Nürnberg (DE) // Kottayam (IN)
+			</div>
 
-            <header class="mb-16 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
-                <div>
-                    <h1 class="text-5xl md:text-6xl font-bold text-white tracking-tighter mb-4">
-                        Nevin Shine
-                    </h1>
-                    <p class="text-xl text-neutral-400 font-light max-w-lg leading-relaxed">
-                        Security Engineer <span class="text-neutral-700 mx-2">/</span> Independent Researcher
-                    </p>
-                    <p class="text-sm text-neutral-500 mt-2 font-mono">
-                        Focus: Kernel Hardening, ptrace, & Weightless AI
-                    </p>
-                </div>
+			<header class="mb-16 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+				<div>
+					<h1 class="text-6xl font-bold text-white tracking-tighter mb-4">
+						Nevin Shine
+					</h1>
+					<p class="text-xl text-neutral-400 font-light max-w-lg leading-relaxed">
+						Security Engineer <span class="text-neutral-700 mx-2">/</span> Independent Researcher
+					</p>
+					<p class="text-sm text-neutral-500 mt-2 font-mono">
+						Focus: Kernel Hardening, ptrace, & Weightless AI
+					</p>
+				</div>
 
-                <a href="/cv.pdf" download class="group flex items-center gap-3 px-5 py-3 border border-neutral-800 hover:border-green-500 transition-colors duration-300 bg-neutral-900/50 rounded-sm">
-                    <div class="text-left">
-                        <span class="block text-[10px] text-neutral-500 uppercase tracking-wider group-hover:text-green-500/70">Dossier</span>
-                        <span class="block text-sm font-bold text-gray-200 group-hover:text-green-400">Download CV</span>
-                    </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-neutral-500 group-hover:text-green-500 transform group-hover:translate-y-1 transition-transform">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M12 12.75l-3.25-3.25m6.5 0L12 12.75M12 3v9.75" />
-                    </svg>
-                </a>
-            </header>
+				<a href="/cv.pdf" download class="group flex items-center gap-3 px-5 py-3 border border-neutral-800 hover:border-green-500 transition-colors duration-300 bg-neutral-900/50 rounded-sm">
+					<div class="text-left">
+						<span class="block text-[10px] text-neutral-500 uppercase tracking-wider group-hover:text-green-500/70">Dossier</span>
+						<span class="block text-sm font-bold text-gray-200 group-hover:text-green-400">Download CV</span>
+					</div>
+					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-neutral-500 group-hover:text-green-500 transform group-hover:translate-y-1 transition-transform">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M12 12.75l-3.25-3.25m6.5 0L12 12.75M12 3v9.75" />
+					</svg>
+				</a>
+			</header>
 
-            <div class="mb-20 grid grid-cols-2 md:grid-cols-4 gap-px bg-neutral-900 border border-neutral-900">
-                <div class="bg-[#050505] p-4">
-                    <span class="block text-[10px] text-neutral-600 mb-1">CORE</span>
-                    <span class="text-sm text-gray-300 font-mono">Linux / Kernel</span>
-                </div>
-                <div class="bg-[#050505] p-4">
-                    <span class="block text-[10px] text-neutral-600 mb-1">LANGUAGES</span>
-                    <span class="text-sm text-gray-300 font-mono">Python / C / Java</span>
-                </div>
-                <div class="bg-[#050505] p-4">
-                    <span class="block text-[10px] text-neutral-600 mb-1">SECURITY</span>
-                    <span class="text-sm text-gray-300 font-mono">DevSecOps / IDS</span>
-                </div>
-                <div class="bg-[#050505] p-4">
-                    <span class="block text-[10px] text-neutral-600 mb-1">RESEARCH</span>
-                    <span class="text-sm text-gray-300 font-mono">MLSecOps / AI</span>
-                </div>
-            </div>
+			<div class="mb-20 grid grid-cols-2 md:grid-cols-4 gap-px bg-neutral-900 border border-neutral-900">
+				<div class="bg-[#050505] p-4">
+					<span class="block text-[10px] text-neutral-600 mb-1 tracking-widest">CORE</span>
+					<span class="text-sm text-gray-300 font-mono">Linux / Kernel</span>
+				</div>
+				<div class="bg-[#050505] p-4">
+					<span class="block text-[10px] text-neutral-600 mb-1 tracking-widest">LANGUAGES</span>
+					<span class="text-sm text-gray-300 font-mono">Python / C / Java</span>
+				</div>
+				<div class="bg-[#050505] p-4">
+					<span class="block text-[10px] text-neutral-600 mb-1 tracking-widest">SECURITY</span>
+					<span class="text-sm text-gray-300 font-mono">DevSecOps / IDS</span>
+				</div>
+				<div class="bg-[#050505] p-4">
+					<span class="block text-[10px] text-neutral-600 mb-1 tracking-widest">RESEARCH</span>
+					<span class="text-sm text-gray-300 font-mono">MLSecOps / AI</span>
+				</div>
+			</div>
 
-            <section class="mb-24">
-                <h2 class="text-xs font-bold text-green-500 mb-8 flex items-center tracking-widest uppercase">
-                    // Active Operations
-                    <span class="ml-4 h-px bg-neutral-800 flex-grow"></span>
-                </h2>
+			<section class="mb-24">
+				<h2 class="text-xs font-bold text-green-500 mb-8 flex items-center tracking-widest uppercase">
+					// Active Operations
+					<span class="ml-4 h-px bg-neutral-800 flex-grow"></span>
+				</h2>
+				
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+					<ProjectCard 
+						title="Sentinel Sandbox"
+						description="Investigating Weightless Neural Networks for zero-day kernel anomaly detection using ptrace-based syscall monitoring."
+						tags={['Python', 'C', 'ptrace', 'Research']}
+						link="https://github.com/nevinshine/sentinel-sandbox"
+						status="Active"
+					/>
+					<ProjectCard 
+						title="100 Days of DevSecOps"
+						description="A continuous documentation log of mastering system hardening and automated security pipelines over 14 weeks."
+						tags={['Docs', 'CI/CD', 'Linux']}
+						link="https://github.com/nevinshine/100-days-of-devsecops"
+						status="Ongoing"
+					/>
+				</div>
+			</section>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <ProjectCard 
-                        title="Sentinel Sandbox"
-                        description="A lightweight AI-driven intrusion detection system using Linux ptrace and Weightless Neural Networks to identify zero-day kernel anomalies."
-                        tags={['Python', 'C', 'ptrace', 'Research']}
-                        link="https://github.com/nevinshine/sentinel-sandbox"
-                        status="Active"
-                    />
-                    <ProjectCard 
-                        title="100 Days of DevSecOps"
-                        description="A continuous documentation log of mastering System Hardening, Kernel Security, and AI integration over 14 weeks."
-                        tags={['Docs', 'CI/CD', 'Linux Hardening']}
-                        link="https://github.com/nevinshine/100-days-of-devsecops"
-                        status="Ongoing"
-                    />
-                </div>
-            </section>
+			<section class="mb-24">
+				<h2 class="text-xs font-bold text-neutral-500 mb-8 flex items-center tracking-widest uppercase">
+					// Recent_Logs
+					<span class="ml-4 h-px bg-neutral-900 flex-grow"></span>
+				</h2>
+				<div class="space-y-2">
+					{posts.map((post) => (
+						<a href={`/blog/${post.slug}/`} class="flex justify-between items-center p-4 border border-neutral-900 hover:border-neutral-700 bg-neutral-900/10 group transition-all rounded-sm">
+							<div class="flex items-center gap-4">
+								<span class="text-[10px] font-mono text-neutral-600 group-hover:text-green-500 transition-colors">DAY_{post.data.day}</span>
+								<span class="text-sm text-neutral-400 group-hover:text-white transition-colors tracking-tight">{post.data.title}</span>
+							</div>
+							<span class="text-[10px] text-neutral-700 uppercase font-mono group-hover:text-neutral-500">{post.data.pubDate.toLocaleDateString()}</span>
+						</a>
+					))}
+				</div>
+			</section>
 
-<footer class="mt-20 pt-10 pb-12 border-t border-neutral-800 bg-transparent text-center">
+			<footer class="mt-20 pt-10 border-t border-neutral-900 text-center bg-transparent">
+				<div class="mb-8 flex justify-center items-center gap-4">
+					<span class="h-px w-8 bg-neutral-800"></span>
+					<span class="text-[10px] font-mono text-green-500 uppercase tracking-widest font-bold">End of Transmission</span>
+					<span class="h-px w-8 bg-neutral-800"></span>
+				</div>
 
-    <div class="mb-8 flex justify-center items-center gap-4">
-        <span class="h-px w-12 bg-neutral-800"></span>
-        <span class="text-[10px] font-mono text-green-500 uppercase tracking-widest font-bold">End of Transmission</span>
-        <span class="h-px w-12 bg-neutral-800"></span>
-    </div>
+				<div class="flex justify-center gap-8 mb-8">
+					<a href="https://github.com/nevinshine" target="_blank" class="text-xs font-mono text-white hover:text-green-400 transition-colors uppercase tracking-wider">[ GitHub ]</a>
+					<a href="https://linkedin.com/in/nevin-shine-b403b932b" target="_blank" class="text-xs font-mono text-white hover:text-green-400 transition-colors uppercase tracking-wider">[ LinkedIn ]</a>
+					<a href="mailto:nevinshine05@outlook.com" class="text-xs font-mono text-white hover:text-green-400 transition-colors uppercase tracking-wider">[ Email ]</a>
+				</div>
 
-    <div class="flex justify-center gap-8 mb-8">
-        <a href="https://github.com/nevinshine" target="_blank" class="text-xs font-mono text-white hover:text-green-400 transition-colors uppercase tracking-wider">
-            [ GitHub ]
-        </a>
-        <a href="https://linkedin.com/in/nevin-shine-b403b932b" target="_blank" class="text-xs font-mono text-white hover:text-green-400 transition-colors uppercase tracking-wider">
-            [ LinkedIn ]
-        </a>
-        <a href="mailto:nevinshine05@outlook.com" class="text-xs font-mono text-white hover:text-green-400 transition-colors uppercase tracking-wider">
-            [ Email ]
-        </a>
-    </div>
+				<div class="text-[10px] text-neutral-700 font-mono">
+					<p>© 2025 NEVIN SHINE // SYSTEM SECURE</p>
+				</div>
+			</footer>
 
-    <div class="text-[10px] text-neutral-500 font-mono space-y-2">
-        <p>INITIATED AT AJCE_LAB_01 // KERALA, IN</p>
-        <p class="text-neutral-400">© 2025 NEVIN SHINE // SYSTEM SECURE</p>
-    </div>
+		</div>
 
-</footer>
-        </div>
-    </body>
+		<script is:inline>
+			function updateClock() {
+				const now = new Date();
+				const timeString = now.getHours().toString().padStart(2, '0') + ":" + 
+								   now.getMinutes().toString().padStart(2, '0') + ":" + 
+								   now.getSeconds().toString().padStart(2, '0');
+				const clockElement = document.getElementById('live-clock');
+				if (clockElement) clockElement.innerText = "SYSTIME: " + timeString;
+			}
+			setInterval(updateClock, 1000);
+			updateClock();
+		</script>
+	</body>
 </html>
