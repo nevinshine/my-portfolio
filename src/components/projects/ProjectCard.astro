@@ -1,0 +1,30 @@
+---
+const { title, description, tags, link, status } = Astro.props;
+---
+
+<a href={link} target="_blank" class="block h-full group">
+    <div class="h-full border border-neutral-800 bg-neutral-900/50 p-5 rounded-sm hover:border-green-500/50 transition-colors duration-200 flex flex-col">
+
+        <div class="flex justify-between items-start mb-3">
+            <h3 class="text-lg font-bold text-gray-100 group-hover:text-green-400 font-sans tracking-tight">
+                {title}
+            </h3>
+            <div class="flex items-center space-x-2">
+                <span class={`w-2 h-2 rounded-full ${status === 'Active' ? 'bg-green-500 animate-pulse' : 'bg-yellow-500'}`}></span>
+                <span class="text-[10px] uppercase tracking-wider text-neutral-500">{status}</span>
+            </div>
+        </div>
+
+        <p class="text-neutral-400 text-sm leading-relaxed mb-6 flex-grow font-sans">
+            {description}
+        </p>
+
+        <div class="border-t border-neutral-800 pt-3 mt-auto flex flex-wrap gap-2">
+            {tags.map((tag) => (
+                <span class="text-[10px] font-mono text-neutral-300 bg-neutral-800 px-2 py-1 rounded-sm">
+                    {tag}
+                </span>
+            ))}
+        </div>
+    </div>
+</a>
