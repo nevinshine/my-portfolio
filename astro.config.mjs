@@ -6,7 +6,7 @@ import tailwind from '@astrojs/tailwind'; // <--- Standard Integration
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://your-username.github.io',
-  base: '/my-portfolio', // This must match your GitHub repository name
+  site: 'https://nevinshine.github.io',
+  base: '/', // This must match your GitHub repository name
   integrations: [mdx(), sitemap(), tailwind()],
 });
